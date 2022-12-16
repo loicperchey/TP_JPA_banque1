@@ -60,6 +60,12 @@ public class Main {
         }
         ps.envoie();
 
+        System.out.println("Tous les produits au dessus de 2100 euros : ");
+        ps.begin();
+        for(Produit produitpascher : ps.filterByPrice(2100)){
+            System.out.println(produitpascher.getId()+" , "+produitpascher.getMarque()+" , "+produitpascher.getReference()+" , "+produitpascher.getDateAchat()+" , "+produitpascher.getPrix());
+        }
+
         ps.close();
 
 

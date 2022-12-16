@@ -68,4 +68,11 @@ public class ProduitService implements IDAO<Produit> {
         List<Produit> list = query.getResultList();
         return list;
     }
+
+    public List<Produit> filterByPrice(double min){
+        Query query = em.createQuery("select p from Produit p where p.prix >= :min");
+        query.setParameter("min",min);
+        List<Produit> list = query.getResultList();
+        return list;
+    }
 }
