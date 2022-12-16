@@ -1,6 +1,7 @@
 package org.example;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Pile<T> {
 
@@ -8,9 +9,8 @@ public class Pile<T> {
 
     private int compteur;
 
-    public Pile(int taille){
-        elements =(T[]) Array.newInstance(elements.getClass(), taille);
-        compteur = 0;
+    public Pile(Class<T[]> clazz, int length) {
+        elements = clazz.cast(Array.newInstance(clazz.getComponentType(), length));
     }
 
     public boolean Empiler(T element){

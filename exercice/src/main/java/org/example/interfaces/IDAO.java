@@ -1,5 +1,7 @@
 package org.example.interfaces;
 
+import java.util.List;
+
 public interface IDAO<T> {
 
     void begin();
@@ -15,5 +17,8 @@ public interface IDAO<T> {
     void envoie();
 
     void close();
+
+    //Exercice 2
+    List<T> findAll();
 
 }

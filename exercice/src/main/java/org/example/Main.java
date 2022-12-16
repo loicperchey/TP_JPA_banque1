@@ -43,7 +43,25 @@ public class Main {
         }
         ps.envoie();
 
+
+
+
+        // Exercice pile
+
+        Pile<String> produitPile = new Pile<String>(String[].class, 1);
+
+        Pile<Produit> produitPile2 = new Pile<Produit>(Produit[].class, 1);
+
+        System.out.println("#############   Exercice 2    #############");
+        System.out.println("Tous les produits");
+        ps.begin();
+        for(Produit produit : ps.findAll()){
+            System.out.println(produit.getId()+" , "+produit.getMarque()+" , "+produit.getReference()+" , "+produit.getDateAchat()+" , "+produit.getPrix());
+        }
+        ps.envoie();
+
         ps.close();
+
 
     }
 }

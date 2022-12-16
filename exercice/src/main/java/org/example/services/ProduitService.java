@@ -6,6 +6,8 @@ import org.example.interfaces.IDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.List;
 
 public class ProduitService implements IDAO<Produit> {
 
@@ -58,5 +60,12 @@ public class ProduitService implements IDAO<Produit> {
     public void close() {
         em.close();
         emf.close();
+    }
+
+    @Override
+    public List<Produit> findAll() {
+        Query query = em.createQuery("select p from Produit p");
+        List<Produit> list = query.getResultList();
+        return list;
     }
 }
