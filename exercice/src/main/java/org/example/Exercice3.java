@@ -18,6 +18,7 @@ public class Exercice3 {
         ps.begin();
         ps.create(new Produit("TOSHIBA","zzza123",new Date("2015/01/08"),6000,12));
         ps.create(new Produit("HP","zEEE163",new Date("2016/02/09"),2000,34));
+        ps.create(new Produit("HP","zEEE163",new Date("2016/02/09"),8000,34));
         ps.create(new Produit("SONY VAIO","AQYUD",new Date("2015/09/23"),6000,56));
         ps.create(new Produit("DELL","AZERTY",new Date("2016/02/12"),6000,72));
         ps.create(new Produit("SONY","qsdert",new Date("2015/02/02"),6000,90));
@@ -45,6 +46,17 @@ public class Exercice3 {
             System.out.println(e.getMessage());
         }
         ps.envoie();
+
+        System.out.println("Question 2 : ");
+        System.out.println("Merci de saisir la marque : ");
+        String marque = scanner.nextLine();
+
+        try{
+            Double total = ps.valeurStockParMarque(marque);
+            System.out.println("Total pour la marque "+marque+" : "+total+" €");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 }

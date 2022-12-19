@@ -88,4 +88,12 @@ public class ProduitService implements IDAO<Produit> {
         throw new Exception("error date");
     }
 
+    public double valeurStockParMarque(String marque){
+        Query query = em.createQuery("select sum(prix) from Produit where marque =:marque");
+        query.setParameter("marque",marque);
+        Double result = (Double) query.getSingleResult();
+        return result;
+    }
+
+
 }
