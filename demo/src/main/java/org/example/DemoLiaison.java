@@ -87,6 +87,7 @@ public class DemoLiaison {
         em.persist(employee2);
 
         transac.commit();
+        transac.begin();
 
         Employee employee3 = em.find(Employee.class,5);
         Employee employee4 = em.find(Employee.class,6);
@@ -102,7 +103,7 @@ public class DemoLiaison {
 
         // Many To Many
 
-        transac.begin();
+
         // Creation de 2 projets
         Project project = new Project();
         project.setId(1);
@@ -110,8 +111,8 @@ public class DemoLiaison {
         em.persist(project);
 
         Project project1 = new Project();
-        project.setId(2);
-        project.setName("ProjetB");
+        project1.setId(2);
+        project1.setName("ProjetB");
         em.persist(project1);
 
         // Creation d'une collection de projets
@@ -139,7 +140,7 @@ public class DemoLiaison {
 
         transac.commit();
 
-        transac.begin();
+       // transac.begin();
         Employee employee7 = em.find(Employee.class,5);
         Employee employee8 = em.find(Employee.class,6);
         Project monprojet1 = em.find(Project.class,1);
@@ -163,7 +164,7 @@ public class DemoLiaison {
         }
 
 
-        transac.commit();
+      //  transac.commit();
         em.close();
         emf.close();
 
