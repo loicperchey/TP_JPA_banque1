@@ -4,6 +4,7 @@ import org.example.entities.Produit;
 import org.example.services.ProduitService;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -72,19 +73,20 @@ public class Main {
         System.out.println("Tous les produits acheté entre le 01/01/2016 et 30/12/2016");
         ps.begin();
         String madate1 ="O1/O1/2016";
-        Date date1= new SimpleDateFormat("dd/MM/yyyy").parse(madate1);
+       // Date date1= new SimpleDateFormat("dd/MM/yyyy").parse(madate1);
+        Date date1 = new Date("2016/01/01");
 
         String madate2="30/12/2016";
-        Date date2= new SimpleDateFormat("dd/MM/yyyy").parse(madate2);
+       // Date date2= new SimpleDateFormat("dd/MM/yyyy").parse(madate2);
+        Date date2=new Date("2016/30/12");
 
-        List<Produit> produitsdate = ps.filterByDate(date1,date2);
-        for(Produit pr :  produitsdate) {
-            System.out.println(pr.getId() + " , " + pr.getMarque() + " , " + pr.getReference() + " , " + pr.getDateAchat() + " , " + pr.getPrix());
+        List<Produit> produitsDate = ps.filterByDate(date1,date2);
+        for(Produit pr : produitsDate){
+            System.out.println(pr.getId()+" , "+pr.getMarque()+" , "+pr.getReference()+" , "+pr.getDateAchat()+" , "+pr.getPrix());
         }
 
 
         ps.envoie();
-
 
         ps.close();
 
