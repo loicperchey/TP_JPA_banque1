@@ -102,7 +102,70 @@ public class DemoLiaison {
 
         // Many To Many
 
-        Project
+        transac.begin();
+        // Creation de 2 projets
+        Project project = new Project();
+        project.setId(1);
+        project.setName("ProjetA");
+        em.persist(project);
+
+        Project project1 = new Project();
+        project.setId(2);
+        project.setName("ProjetB");
+        em.persist(project1);
+
+        // Creation d'une collection de projets
+        Collection<Project> listProjet = new ArrayList<>();
+        listProjet.add(project1);
+        listProjet.add(project);
+
+        // recuperation de plusieurs employees
+        Employee employee5 = em.find(Employee.class,5);
+        Employee employee6 = em.find(Employee.class,6);
+        // que je met dans une liste
+        Collection<Employee> mesemps = new ArrayList<>();
+        mesemps.add(employee5);
+        mesemps.add(employee6);
+
+        // j'attribue des projets à mes employees
+        employee5.setP(listProjet);
+        employee6.setP(listProjet);
+
+        em.persist(employee5);
+        em.persist(employee6);
+
+        project.setE(mesemps);
+        project1.setE(mesemps);
+
+        transac.commit();
+
+        transac.begin();
+        Employee employee7 = em.find(Employee.class,5);
+        Employee employee8 = em.find(Employee.class,6);
+        Project monprojet1 = em.find(Project.class,1);
+        Project monprojet2 = em.find(Project.class,2);
+
+        System.out.println("Liste des projets de l'employee avec l'ID : "+employee7.getId());
+        for(Project p : employee7.getP()){
+            System.out.println(p.getName());
+        }
+        System.out.println("Liste des projets de l'employee avec l'ID : "+employee8.getId());
+        for(Project p : employee8.getP()){
+            System.out.println(p.getName());
+        }
+        System.out.println("Liste des employee sur le projet : "+monprojet1.getName());
+        for(Employee e : monprojet1.getE()){
+            System.out.println(e.getId());
+        }
+        System.out.println("Liste des employee sur le projet : "+monprojet2.getName());
+        for(Employee e : monprojet2.getE()){
+            System.out.println(e.getId());
+        }
+
+
+        transac.commit();
+        em.close();
+        emf.close();
 
 
 
