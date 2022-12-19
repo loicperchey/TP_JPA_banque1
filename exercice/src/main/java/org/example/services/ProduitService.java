@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.util.Date;
 import java.util.List;
 
 public class ProduitService implements IDAO<Produit> {
@@ -75,4 +76,16 @@ public class ProduitService implements IDAO<Produit> {
         List<Produit> list = query.getResultList();
         return list;
     }
+
+    public List<Produit> filterByDate(Date min, Date max) throws Exception {
+        if(min.before(max)){
+            Query query= em.createQuery("select p from Produit  p where dateAchat >= :min and dateAchat <= :max");
+            query.setParameter("min",min);
+            query.setParameter("max",max);
+            return query.getResultList();
+
+        }
+        throw new Exception("error date");
+    }
+
 }
