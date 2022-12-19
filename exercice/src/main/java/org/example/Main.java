@@ -8,6 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
+import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -72,13 +74,13 @@ public class Main {
         ps.envoie();
         System.out.println("Tous les produits acheté entre le 01/01/2016 et 30/12/2016");
         ps.begin();
-        String madate1 ="O1/O1/2016";
-       // Date date1= new SimpleDateFormat("dd/MM/yyyy").parse(madate1);
-        Date date1 = new Date("2016/01/01");
+        String madate1 ="01/01/2016";
+        Date date1= new SimpleDateFormat("dd/MM/yyyy").parse(madate1);
+       // Date date1 = new Date("2016/01/01");
 
         String madate2="30/12/2016";
-       // Date date2= new SimpleDateFormat("dd/MM/yyyy").parse(madate2);
-        Date date2=new Date("2016/30/12");
+        Date date2= new SimpleDateFormat("dd/MM/yyyy").parse(madate2);
+       // Date date2=new Date("2016/30/12");
 
         List<Produit> produitsDate = ps.filterByDate(date1,date2);
         for(Produit pr : produitsDate){
