@@ -3,6 +3,7 @@ package org.example;
 import org.example.model.Department;
 import org.example.model.Employee;
 import org.example.model.ParkingSpace;
+import org.example.model.Project;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -98,6 +99,11 @@ public class DemoLiaison {
         for(Employee emp : emps){
             System.out.println(emp.getId());
         }
+
+        // Many To Many
+
+        Project
+
 
 
     }
