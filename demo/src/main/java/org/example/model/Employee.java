@@ -14,6 +14,18 @@ public class Employee {
     @JoinColumn(name="P_SPACE")
     private ParkingSpace space;
 
+    @ManyToOne
+    @JoinColumn(name="DEPT_ID")
+    private Department d;
+
+    public Department getD() {
+        return d;
+    }
+
+    public void setD(Department d) {
+        this.d = d;
+    }
+
     public int getId() {
         return id;
     }
