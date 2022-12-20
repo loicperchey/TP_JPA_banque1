@@ -7,6 +7,7 @@ import org.example.entity.Compte;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.sound.midi.Soundbank;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,6 +63,24 @@ public class Menu {
 
 
 
+    }
+
+    public static void afficheAll(){
+        System.out.println("##############  Affichage informations ############## ");
+        Query query= em.createQuery("select a from Agence a");
+        List<Agence> agences = query.getResultList();
+        for(Agence a : agences){
+            System.out.println("######################");
+            System.out.println("Agence avec l'id : "+a.getId()+" a l'adresse : "+a.getAdresse());
+            for(Compte c : a.getComptes()){
+                System.out.println("\tCompte avec l'id : "+c.getId()+" libelle : "+c.getLibelle()+" solde : "+c.getSolde());
+                System.out.println("\t\tProprietaire(s) du compte : ");
+                for(Client cl : c.getClients()){
+                    System.out.println("\t\tClient avec l'id : "+cl.getId()+" nom : "+cl.getNom()+" prenom : "+cl.getPrenom());
+                }
+            }
+            System.out.println("######################");
+        }
     }
 
     public static void creation(){
