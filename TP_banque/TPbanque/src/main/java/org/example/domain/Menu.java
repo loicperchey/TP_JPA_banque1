@@ -41,8 +41,10 @@ public class Menu {
                         creation();
                         break;
                     case 2 :
+                        create_compte();
                         break;
                     case 3 :
+                        addClient();
                         break;
                     case 4 :
                         System.out.println("Aurevoir");
@@ -63,6 +65,35 @@ public class Menu {
         }while(choix != 4);
 
 
+
+    }
+
+    public static void create_compte(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entre l'id du client : ");
+        Long id_c = sc.nextLong();
+        Client client = em.find(Client.class,id_c);
+        System.out.println("Entre l'id de l'agence : ");
+        Long id_a = sc.nextLong();
+        Agence agence = em.find(Agence.class,id_a);
+        System.out.println("Entrer le libellé du compte : ");
+        String libelle = sc.next();
+        System.out.println("Entre l'IBAN :");
+        String iban = sc.next();
+        System.out.println("Entrer le solde du compte : ");
+        double solde = sc.nextDouble();
+        Compte compte = new Compte();
+        compte.setLibelle(libelle);
+        compte.setIban(iban);
+        compte.setSolde(solde);
+        compte.setAgence(agence);
+        compte.getClients().add(client);
+        client.getComptes().add(compte);
+        em.persist(compte);
+
+    }
+
+    public static void addClient(){
 
     }
 
