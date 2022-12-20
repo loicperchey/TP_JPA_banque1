@@ -33,6 +33,7 @@ public class Menu {
         int choix =0;
         do{
             try{
+                afficheAll();
                 aff_menu();
                 choix = sc.nextInt();
                 switch (choix){
