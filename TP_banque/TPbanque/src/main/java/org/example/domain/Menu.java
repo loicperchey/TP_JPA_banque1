@@ -87,8 +87,14 @@ public class Menu {
         compte.setIban(iban);
         compte.setSolde(solde);
         compte.setAgence(agence);
-        compte.getClients().add(client);
-        client.getComptes().add(compte);
+        List<Client> listcl = new ArrayList<>();
+        listcl.add(client);
+        compte.setClients(listcl);
+      //  compte.getClients().add(client);
+      //  client.getComptes().add(compte);
+        List<Compte> malistcmp = client.getComptes();
+        malistcmp.add(compte);
+        client.setComptes(malistcmp);
         em.persist(compte);
 
     }
